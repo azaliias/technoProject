@@ -61,6 +61,7 @@ composer install
 Параметры:
 Заданы по умолчанию в контроллере
 
+Пример успешного ответа:
 ```json
 {
   "status": "success",
@@ -79,3 +80,23 @@ composer install
 * Вход в систему (ACTION_LOGIN)
 * Выход из системы (ACTION_LOGOUT)
 * Изменение пароля (ACTION_PASSWORD_UPDATE)
+
+Пример успешного ответа:
+```json
+{
+  "status": "success",
+  "data": [
+    {
+      "action": "password_change",
+      "date": "2025-08-13 16:30:22",
+      "ip": "192.192.1.1",
+      "data": {
+        "field": "password",
+        "message": "log about password update"
+      }
+    }
+  ],
+  "count": 1,
+  "timestamp": 1684327890
+}
+```
