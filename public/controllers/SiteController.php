@@ -106,9 +106,22 @@ class SiteController extends Controller
             $userId = 111;
             $logs = UserLog::findByUserId($userId, UserLog::ACTION_PASSWORD_UPDATE);
            
+            $result = [];
             foreach ($logs as $log) {
-                echo "Action: {$log->action}, Date: {$log->created_at}, IP: {$log->ip_address}\n";
+                $result[] = [
+                    'action' => $log->action,
+                    'date' => $log->created_at,
+                    'ip' => $log->ip_address,
+                    'data' => $log->data
+                ];
             }
+
+            return [
+                'status' => 'success',
+                'data' => $result,
+                'count' => count($result),
+                'timestamp' => time()
+            ];
         } catch (\InvalidArgumentException $e) {
             Yii::error("Invalid arguments for log search: " . $e->getMessage());
             return [
